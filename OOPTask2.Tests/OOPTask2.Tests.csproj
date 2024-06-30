@@ -20,4 +20,10 @@
     <ProjectReference Include="..\OOPTask2\OOPTask2.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="script.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,11 +1,6 @@
 ﻿namespace OOPTask2.Model;
 
-internal sealed class Command
+public sealed class Command(string command)
 {
-    private string _command;
-
-    public Command(string command)
-    {
-        _command = command;
-    }
+    public string Value => command;
 }

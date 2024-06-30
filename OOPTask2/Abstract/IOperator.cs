@@ -2,9 +2,9 @@
 
 namespace OOPTask2.Abstract;
 
-internal interface IOperator
+public interface IOperator
 {
     bool IsMatch(Command command);
 
-    void Execute(IStackMemory memory);
+    void Execute(Command command, IStackMemory memory);
 }

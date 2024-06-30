@@ -1,6 +1,6 @@
 ﻿namespace OOPTask2.Abstract;
 
-internal interface IStackMemory
+public interface IStackMemory
 {
     bool HasElements { get; }
     public int ElementsCount { get; }
