@@ -1,14 +1,38 @@
 ﻿[
   {
-    "Value": "OOPTask2.Operators.CommentOperator",
-    "AssemblyFullname": "OOPTask2"
-  },
-  {
     "Value": "OOPTask2.Operators.PushOperator",
     "AssemblyFullname": "OOPTask2"
   },
   {
+    "Value": "OOPTask2.Operators.PopOperator",
+    "AssemblyFullname": "OOPTask2"
+  },
+  {
+    "Value": "OOPTask2.Operators.AddOperator",
+    "AssemblyFullname": "OOPTask2"
+  },
+  {
+    "Value": "OOPTask2.Operators.SubtractOperator",
+    "AssemblyFullname": "OOPTask2"
+  },
+  {
+    "Value": "OOPTask2.Operators.MultiplyOperator",
+    "AssemblyFullname": "OOPTask2"
+  },
+  {
+    "Value": "OOPTask2.Operators.DivideOperator",
+    "AssemblyFullname": "OOPTask2"
+  },
+  {
     "Value": "OOPTask2.Operators.SquareRootOperator",
+    "AssemblyFullname": "OOPTask2"
+  },
+  {
+    "Value": "OOPTask2.Operators.DefineOperator",
+    "AssemblyFullname": "OOPTask2"
+  },
+  {
+    "Value": "OOPTask2.Operators.PrintOperator",
     "AssemblyFullname": "OOPTask2"
   }
 ]

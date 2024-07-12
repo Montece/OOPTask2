@@ -4,7 +4,9 @@ namespace OOPTask2.Abstract;
 
 public interface IOperator
 {
+    public string Prefix { get; }
+
     bool IsMatch(Command command);
 
-    void Execute(Command command, IStackMemory memory);
+    void Execute(Command command, ICommandContext context);
 }

@@ -1,4 +1,6 @@
-﻿using OOPTask2.Model;
+﻿using Moq;
+using OOPTask2.Abstract;
+using OOPTask2.Model;
 using OOPTask2.Operators;
 using Xunit;
 
@@ -18,7 +20,7 @@ public sealed class SquareRootOperatorTests
     }
 
     [Theory]
-    [InlineData("#А это не команда")]
+    [InlineData("# А это не команда")]
     [InlineData("SQRT 1")]
     public void SquareRootOperator_IsNotMatch(string commandString)
     {
@@ -32,12 +34,12 @@ public sealed class SquareRootOperatorTests
     [Fact]
     public void SquareRootOperator_Execute()
     {
-        var memory = new StackMemory();
-        memory.Push(64);
+        var context = new CommandContext(new StackMemory(), new ParametersMemory(), new Mock<ICommandOutput>().Object);
+        context.StackMemory.Push(64);
         var squareRootOperator = new SquareRootOperator();
-        squareRootOperator.Execute(new("SQRT"), memory);
+        squareRootOperator.Execute(new("SQRT"), context);
 
-        var value = memory.Pop();
+        var value = context.StackMemory.Pop();
         Assert.Equal(8, value);
     }
 }

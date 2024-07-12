@@ -1,0 +1,34 @@
+﻿# Начало работы
+DEFINE a 10
+DEFINE b 100
+DEFINE c 9
+
+# Просто комментарий
+
+PUSH a
+PUSH b
++
+# 110
+PUSH a
+PUSH a
++
+# 20 110
+-
+# 90
+PUSH c
+*
+# 810
+PUSH a
+/
+# 81
+PUSH 33
+PUSH 33
+*
+# 1089 81
+SQRT
+# 33 81
++
+# 114
+PRINT
+
+# Ясно

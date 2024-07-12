@@ -6,23 +6,23 @@ namespace OOPTask2.Operators;
 
 public sealed class SquareRootOperator : IOperator
 {
-    private const string PREFIX = "SQRT";
+    public string Prefix => "SQRT";
 
     public bool IsMatch(Command command)
     {
-        return PREFIX.Equals(command.Value);
+        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length == 0;
     }
 
-    public void Execute(Command command, IStackMemory memory)
+    public void Execute(Command command, ICommandContext context)
     {
-        var element = memory.Pop();
-        var sqrt = Math.Sqrt(element);
+        var operand = context.StackMemory.Pop();
+        var sqrt = Math.Sqrt(operand);
 
         if (sqrt.Equals(double.NaN))
         {
-            throw new SquareRootException($"Не удалось взять корень числа '{element}'!");
+            throw new SquareRootException($"Не удалось взять корень числа '{operand}'!");
         }
 
-        memory.Push(sqrt);
+        context.StackMemory.Push(sqrt);
     }
 }

@@ -1,27 +1,35 @@
 ﻿using OOPTask2.Abstract;
 using OOPTask2.Model;
-using System.Text.RegularExpressions;
+using OOPTask2.Model.Arguments;
 
 namespace OOPTask2.Operators;
 
-public sealed partial class PushOperator : IOperator
+public sealed class PushOperator : IOperator
 {
-    private const string PREFIX = "PUSH";
-    
+    public string Prefix => "PUSH";
+
     public bool IsMatch(Command command)
     {
-        return PushRegex().IsMatch(command.Value);
+        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length == 1;
     }
 
-    public void Execute(Command command, IStackMemory memory)
+    public void Execute(Command command, ICommandContext context)
     {
-        var valueStr = command.Value.Replace(PREFIX, string.Empty);
-        if (double.TryParse(valueStr, out var value))
+        switch (command.Arguments.Length)
         {
-            memory.Push(value);
+            case 1 when command.Arguments[0] is NumberArgument numberArgument:
+                context.StackMemory.Push((double)numberArgument.Value);
+                break;
+            case 1 when command.Arguments[0] is ParameterArgument parameterArgument:
+            {
+                if (!context.ParametersMemory.IsExists((string)parameterArgument.Value))
+                {
+                    return;
+                }
+                var parameter = context.ParametersMemory.Get((string)parameterArgument.Value);
+                context.StackMemory.Push(parameter.Value);
+                break;
+            }
         }
     }
-
-    [GeneratedRegex($@"^{PREFIX} -?\d+(?:\.\d+)?")]
-    private static partial Regex PushRegex();
 }

@@ -8,4 +8,6 @@ public interface IStackMemory
     void Push(double element);
 
     double Pop();
+
+    IReadOnlyCollection<double> GetMemoryState();
 }

@@ -3,11 +3,11 @@ using OOPTask2.Abstract;
 
 namespace OOPTask2;
 
-public sealed class CommandInterpreter(IOperatorStorage operatorStorage, IStackMemory stackMemory, CommandReader commandReader) : ICommandInterpreter
+public sealed class CommandInterpreter(IOperatorStorage operatorStorage, ICommandReader commandReader, ICommandContext commandContext) : ICommandInterpreter
 {
     public IOperatorStorage OperatorStorage { get; } = operatorStorage;
-    public IStackMemory StackMemory { get; } = stackMemory;
     public ICommandReader CommandReader { get; } = commandReader;
+    public ICommandContext CommandContext { get; } = commandContext;
 
     private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
@@ -31,11 +31,11 @@ public sealed class CommandInterpreter(IOperatorStorage operatorStorage, IStackM
             return;
         }
 
-        _logger.Info($"Execute command '{command.Value}'");
+        _logger.Info($"Execute command '{command.RawValue}'");
 
         try
         {
-            matchOperator.Execute(command, StackMemory);
+            matchOperator.Execute(command, CommandContext);
         }
         catch (Exception ex)
         {
@@ -46,7 +46,7 @@ public sealed class CommandInterpreter(IOperatorStorage operatorStorage, IStackM
     public void ExecuteAll()
     {
         while (HasNextCommand)
-        { 
+        {
             ExecuteNext();
         }
     }

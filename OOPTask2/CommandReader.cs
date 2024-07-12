@@ -11,7 +11,7 @@ public sealed class CommandReader(StreamReader reader) : ICommandReader
     {
         var line = reader.ReadLine();
 
-        if (line is null)
+        if (string.IsNullOrEmpty(line) || line.StartsWith('#'))
         {
             return null;
         }

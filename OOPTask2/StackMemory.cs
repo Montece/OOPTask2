@@ -26,4 +26,6 @@ public sealed class StackMemory : IStackMemory
 
         return element;
     }
+
+    public IReadOnlyCollection<double> GetMemoryState() => _stack.ToArray();
 }
