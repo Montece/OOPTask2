@@ -7,5 +7,5 @@ public interface IStackMemory
 
     void Push(double element);
 
-    double? Pop();
+    double Pop();
 }

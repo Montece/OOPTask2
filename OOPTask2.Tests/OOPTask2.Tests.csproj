@@ -21,7 +21,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="script.txt">
+    <None Update="script_2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="script_1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

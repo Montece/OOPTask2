@@ -2,8 +2,7 @@
 
 public interface ICommandInterpreter
 {
-    public IOperatorLoader OperatorLoader { get; }
-    public IOperatorCreator OperatorCreator { get; }
+    public IOperatorStorage OperatorStorage { get; }
     public IStackMemory StackMemory { get; }
     public ICommandReader CommandReader { get; }
 }

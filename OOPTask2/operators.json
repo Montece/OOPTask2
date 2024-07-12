@@ -6,5 +6,9 @@
   {
     "Value": "OOPTask2.Operators.PushOperator",
     "AssemblyFullname": "OOPTask2"
+  },
+  {
+    "Value": "OOPTask2.Operators.SquareRootOperator",
+    "AssemblyFullname": "OOPTask2"
   }
 ]

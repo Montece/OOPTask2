@@ -22,6 +22,6 @@ public sealed partial class PushOperator : IOperator
         }
     }
 
-    [GeneratedRegex($"^{PREFIX} -?\\d+(?:\\.\\d+)?")]
+    [GeneratedRegex($@"^{PREFIX} -?\d+(?:\.\d+)?")]
     private static partial Regex PushRegex();
 }

@@ -1,36 +1,17 @@
 ﻿using NLog;
 using OOPTask2.Abstract;
-using OOPTask2.Model;
 
 namespace OOPTask2;
 
-public sealed class CommandInterpreter : ICommandInterpreter
+public sealed class CommandInterpreter(IOperatorStorage operatorStorage, IStackMemory stackMemory, CommandReader commandReader) : ICommandInterpreter
 {
-    public IOperatorLoader OperatorLoader { get; }
-    public IOperatorCreator OperatorCreator { get; }
-    public IStackMemory StackMemory { get; }
-    public ICommandReader CommandReader { get; }
-
-    private readonly List<IOperator> _operators = [];
+    public IOperatorStorage OperatorStorage { get; } = operatorStorage;
+    public IStackMemory StackMemory { get; } = stackMemory;
+    public ICommandReader CommandReader { get; } = commandReader;
 
     private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
     public bool HasNextCommand => CommandReader.HasCommands;
-
-    public CommandInterpreter(IOperatorLoader operatorLoader, IOperatorCreator operatorCreator, IStackMemory stackMemory, CommandReader commandReader)
-    {
-        OperatorLoader = operatorLoader;
-        OperatorCreator = operatorCreator;
-        StackMemory = stackMemory;
-        CommandReader = commandReader;
-
-        var classNames = operatorLoader.LoadClassNames();
-        foreach (var className in classNames)
-        {
-            var newOperator = OperatorCreator.Create(className);
-            _operators.Add(newOperator);
-        }
-    }
 
     public void ExecuteNext()
     {
@@ -42,7 +23,7 @@ public sealed class CommandInterpreter : ICommandInterpreter
             return;
         }
 
-        var matchOperator = AnyOperatorMatch(command);
+        var matchOperator = OperatorStorage.FindOperator(command);
 
         if (matchOperator is null)
         {
@@ -50,7 +31,16 @@ public sealed class CommandInterpreter : ICommandInterpreter
             return;
         }
 
-        matchOperator.Execute(command, StackMemory);
+        _logger.Info($"Execute command '{command.Value}'");
+
+        try
+        {
+            matchOperator.Execute(command, StackMemory);
+        }
+        catch (Exception ex)
+        {
+            _logger.Error($"Error while executing command!", ex);
+        }
     }
 
     public void ExecuteAll()
@@ -59,12 +49,5 @@ public sealed class CommandInterpreter : ICommandInterpreter
         { 
             ExecuteNext();
         }
-    }
-
-    private IOperator? AnyOperatorMatch(Command command)
-    {
-        var matchOperator = _operators.FirstOrDefault(o => o.IsMatch(command));
-
-        return matchOperator;
     }
 }

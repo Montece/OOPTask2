@@ -1,4 +1,5 @@
 ﻿using OOPTask2.Abstract;
+using OOPTask2.Exceptions;
 
 namespace OOPTask2;
 
@@ -14,11 +15,11 @@ public sealed class StackMemory : IStackMemory
         _stack.Push(element);
     }
 
-    public double? Pop()
+    public double Pop()
     {
         if (!HasElements)
         {
-            throw new InvalidOperationException("Нет элементов в памяти!");
+            throw new EmptyMemoryException();
         }
 
         var element = _stack.Pop();
