@@ -1,8 +1,10 @@
-﻿using OOPTask2.Abstract;
+﻿using JetBrains.Annotations;
+using OOPTask2.Abstract;
 using OOPTask2.Model;
 
 namespace OOPTask2.Operators;
 
+[UsedImplicitly]
 public sealed class DefineOperator : IOperator
 {
     public string Prefix => "DEFINE";

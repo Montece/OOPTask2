@@ -20,13 +20,13 @@
     "AssemblyFullname": "OOPTask2"
   },
   {
-    "Value": "OOPTask2.Operators.DivideOperator",
+    "Value": "OOPTask2.Operators.Divide.DivideOperator",
     "AssemblyFullname": "OOPTask2"
   },
-  {
-    "Value": "OOPTask2.Operators.SquareRootOperator",
-    "AssemblyFullname": "OOPTask2"
-  },
+    {
+        "Value": "OOPTask2.Operators.SquareRoot.SquareRootOperator",
+        "AssemblyFullname": "OOPTask2"
+    },
   {
     "Value": "OOPTask2.Operators.DefineOperator",
     "AssemblyFullname": "OOPTask2"

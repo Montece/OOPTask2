@@ -1,6 +1,7 @@
-﻿using Newtonsoft.Json;
+﻿using JetBrains.Annotations;
+using Newtonsoft.Json;
 using OOPTask2.Abstract;
-using OOPTask2.Model;
+using OOPTask2.Utility;
 
 namespace OOPTask2;
 
@@ -8,6 +9,7 @@ public sealed class JsonOperatorLoader : IOperatorLoader
 {
     private const string FILENAME = "operators.json";
 
+    [MustUseReturnValue]
     public List<ClassName> LoadClassNames()
     {
         var json = File.ReadAllText(FILENAME);
@@ -15,7 +17,7 @@ public sealed class JsonOperatorLoader : IOperatorLoader
 
         if (classNames is null)
         {
-            throw new Exception($"Не удалось прочитать файл '{FILENAME}'");
+            throw new Exception($"Cannot read file '{FILENAME}'");
         }
 
         return classNames;

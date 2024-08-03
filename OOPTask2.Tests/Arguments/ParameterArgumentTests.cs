@@ -1,4 +1,4 @@
-﻿using OOPTask2.Model.Arguments;
+﻿using OOPTask2.Commands.Arguments;
 using Xunit;
 
 namespace OOPTask2.Tests.Arguments;

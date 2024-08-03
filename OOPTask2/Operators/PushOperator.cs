@@ -1,9 +1,11 @@
-﻿using OOPTask2.Abstract;
+﻿using JetBrains.Annotations;
+using OOPTask2.Abstract;
+using OOPTask2.Commands.Arguments;
 using OOPTask2.Model;
-using OOPTask2.Model.Arguments;
 
 namespace OOPTask2.Operators;
 
+[UsedImplicitly]
 public sealed class PushOperator : IOperator
 {
     public string Prefix => "PUSH";
@@ -30,6 +32,8 @@ public sealed class PushOperator : IOperator
                 context.StackMemory.Push(parameter.Value);
                 break;
             }
+            default:
+                throw new InvalidArgumentsCountException();
         }
     }
 }

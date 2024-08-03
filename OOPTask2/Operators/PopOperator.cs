@@ -1,9 +1,11 @@
-﻿using OOPTask2.Abstract;
+﻿using JetBrains.Annotations;
+using OOPTask2.Abstract;
+using OOPTask2.Commands.Arguments;
 using OOPTask2.Model;
-using OOPTask2.Model.Arguments;
 
 namespace OOPTask2.Operators;
 
+[UsedImplicitly]
 public sealed class PopOperator : IOperator
 {
     public string Prefix => "POP";
@@ -29,6 +31,8 @@ public sealed class PopOperator : IOperator
                 }
                 break;
             }
+            default:
+                throw new InvalidArgumentsCountException();
         }
     }
 }

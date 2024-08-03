@@ -1,5 +1,7 @@
-﻿using OOPTask2.Abstract;
+﻿using JetBrains.Annotations;
+using OOPTask2.Abstract;
 using OOPTask2.Model;
+using OOPTask2.Operators;
 
 namespace OOPTask2;
 
@@ -23,6 +25,7 @@ public sealed class OperatorStorage : IOperatorStorage
         }
     }
 
+    [Pure]
     public IOperator? FindOperator(Command command)
     {
         var matchOperator = _operators.FirstOrDefault(o => o.IsMatch(command));

@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
-using OOPTask2.Model;
+using JetBrains.Annotations;
 
 namespace OOPTask2.Utility;
 
 internal static class DomainHelper
 {
-    public static bool IsTypeExists(string typeFullname, out string asseblyFullname)
+    [Pure]
+    public static bool IsTypeExists(string typeFullname, out string assemblyFullname)
     {
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        asseblyFullname = string.Empty;
+        assemblyFullname = string.Empty;
 
         foreach (var assembly in assemblies)
         {
@@ -19,7 +20,7 @@ internal static class DomainHelper
                     continue;
                 }
 
-                asseblyFullname = assembly.FullName;
+                assemblyFullname = assembly.FullName;
                 return true;
             }
             catch
@@ -31,6 +32,8 @@ internal static class DomainHelper
         return false;
     }
 
+    [Pure]
+    [MustUseReturnValue]
     private static Assembly? GetAssemblyByName(string fullname)
     {
         foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())

@@ -1,4 +1,5 @@
-﻿using NLog;
+﻿using JetBrains.Annotations;
+using NLog;
 using OOPTask2.Abstract;
 
 namespace OOPTask2;

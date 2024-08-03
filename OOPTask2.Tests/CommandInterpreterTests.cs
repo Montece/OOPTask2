@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using OOPTask2.Memory;
+using System.Text;
 using Xunit;
 
 namespace OOPTask2.Tests;

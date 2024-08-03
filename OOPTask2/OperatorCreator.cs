@@ -1,5 +1,5 @@
 ﻿using OOPTask2.Abstract;
-using OOPTask2.Model;
+using OOPTask2.Operators;
 using OOPTask2.Utility;
 
 namespace OOPTask2;
@@ -12,7 +12,7 @@ public sealed class OperatorCreator : IOperatorCreator
 
         if (instance is not IOperator iOperator)
         {
-            throw new ArgumentException("Ошибка создания класса!", nameof(operatorFullName));
+            throw new ArgumentException("Cannot create class!", nameof(operatorFullName));
         }
 
         return iOperator;
