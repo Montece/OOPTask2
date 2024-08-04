@@ -59,9 +59,10 @@ internal sealed class ConsoleReader : ICommandReader
                 }
             }
 
-            if (upperCommandString.StartsWith("EXECUTE "))
+            const string executePrefix = "EXECUTE ";
+            if (upperCommandString.StartsWith(executePrefix))
             {
-                var fileInfo = new FileInfo(upperCommandString[8..]);
+                var fileInfo = new FileInfo(upperCommandString[executePrefix.Length..]);
                 foreach (var lineWithCommand in File.ReadAllLines(fileInfo.FullName))
                 {
                     if (lineWithCommand.StartsWith('#'))
@@ -71,7 +72,7 @@ internal sealed class ConsoleReader : ICommandReader
 
                     try
                     {
-                        _commandsBuffer.Enqueue(new Command(lineWithCommand)); 
+                        _commandsBuffer.Enqueue(new(lineWithCommand)); 
                     }
                     catch (Exception ex)
                     {
