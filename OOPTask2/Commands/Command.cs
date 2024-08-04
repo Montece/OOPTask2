@@ -1,6 +1,6 @@
 ﻿using OOPTask2.Commands.Arguments;
 
-namespace OOPTask2.Model;
+namespace OOPTask2.Commands;
 
 public sealed class Command
 {

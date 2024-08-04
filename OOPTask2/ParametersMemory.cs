@@ -1,5 +1,5 @@
-﻿using OOPTask2.Memory;
-using OOPTask2.Model;
+﻿using OOPTask2.Commands;
+using OOPTask2.Memory;
 
 namespace OOPTask2;
 

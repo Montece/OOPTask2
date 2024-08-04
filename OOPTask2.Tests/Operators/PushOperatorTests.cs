@@ -1,7 +1,6 @@
 ﻿using Moq;
 using OOPTask2.Abstract;
-using OOPTask2.Memory;
-using OOPTask2.Model;
+using OOPTask2.Commands;
 using OOPTask2.Operators;
 using Xunit;
 
@@ -38,7 +37,7 @@ public sealed class PushOperatorTests
     public void PushOperator_ExecuteWithNumber(string commandString, double expectedValue)
     {
         var command = new Command(commandString);
-        var context = new CommandContext(new StackMemory(), new ParametersMemory(), new CommandOutput(null));
+        var context = new CommandContext(new StackMemory(), new ParametersMemory(), new CommandOutput(null!));
         var pushOperator = new PushOperator();
         pushOperator.Execute(command, context);
 

@@ -1,7 +1,6 @@
 ﻿using Moq;
 using OOPTask2.Abstract;
-using OOPTask2.Memory;
-using OOPTask2.Model;
+using OOPTask2.Commands;
 using OOPTask2.Operators;
 using Xunit;
 
@@ -35,7 +34,7 @@ public sealed class PopOperatorTests
     [Fact]
     public void PopOperator_ExecuteWithNumber()
     {
-        var context = new CommandContext(new StackMemory(), new ParametersMemory(), new CommandOutput(null));
+        var context = new CommandContext(new StackMemory(), new ParametersMemory(), new CommandOutput(null!));
         var popOperator = new PopOperator();
         new PushOperator().Execute(new("PUSH 99"), context);
         var countAfterPush = context.StackMemory.ElementsCount;

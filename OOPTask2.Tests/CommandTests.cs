@@ -1,4 +1,4 @@
-﻿using OOPTask2.Model;
+﻿using OOPTask2.Commands;
 using Xunit;
 
 namespace OOPTask2.Tests;

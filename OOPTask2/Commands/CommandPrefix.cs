@@ -1,4 +1,4 @@
-﻿namespace OOPTask2.Model;
+﻿namespace OOPTask2.Commands;
 
 public sealed class CommandPrefix
 {

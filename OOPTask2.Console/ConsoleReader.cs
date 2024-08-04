@@ -1,5 +1,5 @@
 ﻿using OOPTask2.Abstract;
-using OOPTask2.Model;
+using OOPTask2.Commands;
 
 namespace OOPTask2.Console;
 
@@ -31,31 +31,32 @@ internal sealed class ConsoleReader : ICommandReader
 
             var upperCommandString = rawCommandString.ToUpper();
 
-            if (upperCommandString.Equals("EXIT") || upperCommandString.Equals("STOP") || upperCommandString.Equals("QUIT"))
+            switch (upperCommandString)
             {
-                Environment.Exit(0);
-                return null;
-            }
-
-            if (upperCommandString.Equals("CLS") || upperCommandString.Equals("CLR") || upperCommandString.Equals("CLEAR"))
-            {
-                System.Console.Clear();
-                return null;
-            }
-
-            if (upperCommandString.Equals("MEM"))
-            {
-                System.Console.WriteLine("===== STACK =====");
-                foreach (var element in Program.Interpreter.CommandContext.StackMemory.GetMemoryState())
+                case "EXIT":
+                case "STOP":
+                case "QUIT":
+                    Environment.Exit(0);
+                    return null;
+                case "CLS":
+                case "CLR":
+                case "CLEAR":
+                    System.Console.Clear();
+                    return null;
+                case "MEM":
                 {
-                    System.Console.WriteLine(element);
+                    System.Console.WriteLine("===== STACK =====");
+                    foreach (var element in Program.Interpreter?.CommandContext.StackMemory.GetMemoryState()!)
+                    {
+                        System.Console.WriteLine(element);
+                    }
+                    System.Console.WriteLine("===== PARAMETERS =====");
+                    foreach (var parameter in Program.Interpreter.CommandContext.ParametersMemory.GetMemoryState())
+                    {
+                        System.Console.WriteLine(parameter);
+                    }
+                    return null;
                 }
-                System.Console.WriteLine("===== PARAMETERS =====");
-                foreach (var parameter in Program.Interpreter.CommandContext.ParametersMemory.GetMemoryState())
-                {
-                    System.Console.WriteLine(parameter);
-                }
-                return null;
             }
 
             if (upperCommandString.StartsWith("EXECUTE "))

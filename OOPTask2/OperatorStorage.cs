@@ -1,6 +1,6 @@
 ﻿using JetBrains.Annotations;
 using OOPTask2.Abstract;
-using OOPTask2.Model;
+using OOPTask2.Commands;
 using OOPTask2.Operators;
 
 namespace OOPTask2;

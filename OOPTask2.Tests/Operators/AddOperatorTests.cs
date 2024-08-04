@@ -1,9 +1,7 @@
 ﻿using Moq;
 using OOPTask2.Abstract;
-using OOPTask2.Memory;
-using OOPTask2.Model;
+using OOPTask2.Commands;
 using OOPTask2.Operators;
-using OOPTask2.Operators.SquareRoot;
 using Xunit;
 
 namespace OOPTask2.Tests.Operators;

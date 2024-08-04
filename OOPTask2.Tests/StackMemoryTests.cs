@@ -1,5 +1,4 @@
-﻿using OOPTask2.Memory;
-using Xunit;
+﻿using Xunit;
 
 namespace OOPTask2.Tests;
 

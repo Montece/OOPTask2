@@ -1,10 +1,8 @@
-﻿using OOPTask2.Memory;
-
-namespace OOPTask2.Console;
+﻿namespace OOPTask2.Console;
 
 internal static class Program
 {
-    public static CommandInterpreter Interpreter { get; private set; }
+    public static CommandInterpreter? Interpreter { get; private set; }
 
     public static void Main(string[] commandLineArguments)
     {
