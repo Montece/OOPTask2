@@ -15,7 +15,7 @@ public sealed class MultiplyOperatorTests
         var multiplyOperator = new MultiplyOperator();
         var isMatch = multiplyOperator.IsMatch(command);
 
-        Assert.True(isMatch);
+        Assert.True(isMatch, "Wrong command for operator!");
     }
 
     [Theory]
@@ -29,7 +29,7 @@ public sealed class MultiplyOperatorTests
         var multiplyOperator = new MultiplyOperator();
         var isMatch = multiplyOperator.IsMatch(command);
 
-        Assert.False(isMatch);
+        Assert.False(isMatch, "Not wrong command for operator!");
     }
 
     [Fact]
@@ -39,7 +39,7 @@ public sealed class MultiplyOperatorTests
         context.StackMemory.Push(9);
         context.StackMemory.Push(6);
         var multiplyOperator = new MultiplyOperator();
-        multiplyOperator.Execute(new("*9"), context);
+        multiplyOperator.Execute(new("*"), context);
 
         var value = context.StackMemory.Pop();
         Assert.Equal(54, value);

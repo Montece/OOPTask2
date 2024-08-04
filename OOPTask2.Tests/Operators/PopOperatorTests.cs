@@ -17,7 +17,7 @@ public sealed class PopOperatorTests
         var popOperator = new PopOperator();
         var isMatch = popOperator.IsMatch(command);
 
-        Assert.True(isMatch);
+        Assert.True(isMatch, "Wrong command for operator!");
     }
 
     [Theory]
@@ -28,7 +28,7 @@ public sealed class PopOperatorTests
         var popOperator = new PopOperator();
         var isMatch = popOperator.IsMatch(command);
 
-        Assert.False(isMatch);
+        Assert.False(isMatch, "Not wrong command for operator!");
     }
 
     [Fact]
@@ -41,7 +41,7 @@ public sealed class PopOperatorTests
         popOperator.Execute(new("POP"), context);
         var countAfterPop = context.StackMemory.ElementsCount;
 
-        Assert.True(countAfterPush == 1 && countAfterPop == 0);
+        Assert.True(countAfterPush == 1 && countAfterPop == 0, "Wrong count check!");
     }
 
     [Fact]

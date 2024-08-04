@@ -11,7 +11,7 @@ public sealed class ArgumentFabricTests
     [InlineData("zwe")]
     public void ArgumentFabric_IsParameter(string argument)
     {
-        Assert.True(ArgumentFabric.IsParameter(argument));
+        Assert.True(ArgumentFabric.IsParameter(argument), "Wrong input format for parameter argument!");
     }
 
     [Theory]
@@ -20,7 +20,7 @@ public sealed class ArgumentFabricTests
     [InlineData("e!")]
     public void ArgumentFabric_IsNotParameter(string argument)
     {
-        Assert.False(ArgumentFabric.IsParameter(argument));
+        Assert.False(ArgumentFabric.IsParameter(argument), "Not wrong input format for parameter argument!");
     }
 
     [Theory]
@@ -29,7 +29,7 @@ public sealed class ArgumentFabricTests
     [InlineData("0QeeweEd1e5")]
     public void ArgumentFabric_IsText(string argument)
     {
-        Assert.True(ArgumentFabric.IsText(argument));
+        Assert.True(ArgumentFabric.IsText(argument), "Wrong input format for text argument!");
     }
 
     [Theory]
@@ -37,7 +37,7 @@ public sealed class ArgumentFabricTests
     [InlineData("//eq")]
     public void ArgumentFabric_IsNotText(string argument)
     {
-        Assert.False(ArgumentFabric.IsText(argument));
+        Assert.False(ArgumentFabric.IsText(argument), "Nor wrong input format for parameter argument!");
     }
 
     [Theory]
@@ -48,7 +48,7 @@ public sealed class ArgumentFabricTests
     [InlineData("-999,99")]
     public void ArgumentFabric_IsDouble(string argument)
     {
-        Assert.True(ArgumentFabric.IsDouble(argument));
+        Assert.True(ArgumentFabric.IsDouble(argument), "Wrong input format for double argument!");
     }
 
     [Theory]
@@ -58,6 +58,6 @@ public sealed class ArgumentFabricTests
     [InlineData("-999.99")]
     public void ArgumentFabric_IsNotDouble(string argument)
     {
-        Assert.False(ArgumentFabric.IsDouble(argument));
+        Assert.False(ArgumentFabric.IsDouble(argument), "Not wrong input format for parameter argument!");
     }
 }

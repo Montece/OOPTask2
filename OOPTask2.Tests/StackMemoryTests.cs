@@ -12,7 +12,7 @@ public sealed class StackMemoryTests
         memory.Push(1);
         var hasElementsAfterAdding = memory.HasElements;
 
-        Assert.True(!hasElementsBeforeAdding && hasElementsAfterAdding);
+        Assert.True(!hasElementsBeforeAdding && hasElementsAfterAdding, "Wrong elements adding!");
     }
 
     [Fact]
@@ -23,7 +23,7 @@ public sealed class StackMemoryTests
         memory.Push(1);
         var elementsCountAfterAdding = memory.ElementsCount;
 
-        Assert.True(elementsCountBeforeAdding == 0 && elementsCountAfterAdding == 1);
+        Assert.True(elementsCountBeforeAdding == 0 && elementsCountAfterAdding == 1, "Wrong elements adding!");
     }
 
     [Fact]
@@ -51,6 +51,6 @@ public sealed class StackMemoryTests
         var firstElement = memory.Pop();
         var secondElement = memory.Pop();
 
-        Assert.True(firstElement.Equals(2d) && secondElement.Equals(1d));
+        Assert.True(firstElement.Equals(2d) && secondElement.Equals(1d), "Wrong elements from memory or their order!");
     }
 }

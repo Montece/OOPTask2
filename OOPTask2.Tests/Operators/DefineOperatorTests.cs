@@ -17,7 +17,7 @@ public sealed class DefineOperatorTests
         var defineOperator = new DefineOperator();
         var isMatch = defineOperator.IsMatch(command);
 
-        Assert.True(isMatch);
+        Assert.True(isMatch, "Wrong command for operator!");
     }
 
     [Theory]
@@ -29,7 +29,7 @@ public sealed class DefineOperatorTests
         var defineOperator = new DefineOperator();
         var isMatch = defineOperator.IsMatch(command);
 
-        Assert.False(isMatch);
+        Assert.False(isMatch, "Not wrong command for operator!");
     }
 
     [Fact]
@@ -39,7 +39,7 @@ public sealed class DefineOperatorTests
         var context = new CommandContext(new StackMemory(), new ParametersMemory(), new Mock<ICommandOutput>().Object);
         var defineOperator = new DefineOperator();
         defineOperator.Execute(command, context);
-        new PushOperator().Execute(new Command("PUSH x"), context);
+        new PushOperator().Execute(new("PUSH x"), context);
 
         var value = context.StackMemory.Pop();
         Assert.Equal(99, value);

@@ -16,7 +16,7 @@ public sealed class SquareRootOperatorTests
         var squareRootOperator = new SquareRootOperator();
         var isMatch = squareRootOperator.IsMatch(command);
 
-        Assert.True(isMatch);
+        Assert.True(isMatch, "Wrong command for operator!");
     }
 
     [Theory]
@@ -28,7 +28,7 @@ public sealed class SquareRootOperatorTests
         var squareRootOperator = new SquareRootOperator();
         var isMatch = squareRootOperator.IsMatch(command);
 
-        Assert.False(isMatch);
+        Assert.False(isMatch, "Not wrong command for operator!");
     }
 
     [Fact]

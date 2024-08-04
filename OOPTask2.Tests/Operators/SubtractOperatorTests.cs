@@ -15,7 +15,7 @@ public sealed class SubtractOperatorTests
         var subtractOperator = new SubtractOperator();
         var isMatch = subtractOperator.IsMatch(command);
 
-        Assert.True(isMatch);
+        Assert.True(isMatch, "Wrong command for operator!");
     }
 
     [Theory]
@@ -29,7 +29,7 @@ public sealed class SubtractOperatorTests
         var subtractOperator = new SubtractOperator();
         var isMatch = subtractOperator.IsMatch(command);
 
-        Assert.False(isMatch);
+        Assert.False(isMatch, "Not wrong command for operator!");
     }
 
     [Fact]
