@@ -1,4 +1,6 @@
-﻿namespace OOPTask2.Commands.Arguments;
+﻿using System.Globalization;
+
+namespace OOPTask2.Commands.Arguments;
 
 public static class ArgumentFabric
 {
@@ -6,7 +8,7 @@ public static class ArgumentFabric
     {
         if (IsDouble(argumentRawValue))
         {
-            return new NumberArgument(double.Parse(argumentRawValue));
+            return new NumberArgument(double.Parse(argumentRawValue, CultureInfo.InvariantCulture));
         }
 
         if (IsParameter(argumentRawValue))
@@ -34,6 +36,6 @@ public static class ArgumentFabric
 
     public static bool IsDouble(string rawString)
     {
-        return !string.IsNullOrEmpty(rawString) && double.TryParse(rawString, out _);
+        return !string.IsNullOrEmpty(rawString) && double.TryParse(rawString, CultureInfo.InvariantCulture, out var _);
     }
 }

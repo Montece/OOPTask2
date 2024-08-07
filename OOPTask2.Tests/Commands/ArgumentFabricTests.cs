@@ -46,6 +46,8 @@ public sealed class ArgumentFabricTests
     [InlineData("785")]
     [InlineData("414,785")]
     [InlineData("-999,99")]
+    [InlineData("414.5485")]
+    [InlineData("-999.99")]
     public void ArgumentFabric_IsDouble(string argument)
     {
         Assert.True(ArgumentFabric.IsDouble(argument), "Wrong input format for double argument!");
@@ -54,8 +56,6 @@ public sealed class ArgumentFabricTests
     [Theory]
     [InlineData("585 eqweq")]
     [InlineData("gdgd")]
-    [InlineData("414.5485")]
-    [InlineData("-999.99")]
     public void ArgumentFabric_IsNotDouble(string argument)
     {
         Assert.False(ArgumentFabric.IsDouble(argument), "Not wrong input format for parameter argument!");

@@ -11,6 +11,8 @@ public sealed class PushOperatorTests
     [Theory]
     [InlineData("PUSH 0,0")]
     [InlineData("PUSH 8")]
+    [InlineData("PUSH 8,5")]
+    [InlineData("PUSH 8.5")]
     public void PushOperator_IsMatch(string commandString)
     {
         var command = new Command(commandString);

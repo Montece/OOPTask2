@@ -32,7 +32,7 @@ public sealed class Command
             command = string.Empty;
         }
 
-        Prefix = new CommandPrefix(prefixValue);
+        Prefix = new(prefixValue);
 
         if (!string.IsNullOrEmpty(command))
         {
