@@ -1,13 +1,14 @@
 ﻿using OOPTask2.Abstract;
 using OOPTask2.Commands;
+using OOPTask2.Console.ConsoleCommands;
 
 namespace OOPTask2.Console;
 
-internal sealed class ConsoleReader : ICommandReader
+public sealed class ConsoleReader : ICommandReader
 {
     public bool HasCommands => true;
 
-    private Queue<Command> _commandsBuffer = new();
+    private readonly Queue<Command> _commandsBuffer = new();
 
     public Command? Read()
     {
@@ -31,64 +32,24 @@ internal sealed class ConsoleReader : ICommandReader
 
             var upperCommandString = rawCommandString.ToUpper();
 
-            switch (upperCommandString)
+            var result = ConsoleCommandsManager.TryExecuteCommand(upperCommandString, this);
+
+            if (!result)
             {
-                case "EXIT":
-                case "STOP":
-                case "QUIT":
-                    Environment.Exit(0);
-                    return null;
-                case "CLS":
-                case "CLR":
-                case "CLEAR":
-                    System.Console.Clear();
-                    return null;
-                case "MEM":
-                {
-                    System.Console.WriteLine("===== STACK =====");
-                    foreach (var element in Program.Interpreter?.CommandContext.StackMemory.GetMemoryState()!)
-                    {
-                        System.Console.WriteLine(element);
-                    }
-                    System.Console.WriteLine("===== PARAMETERS =====");
-                    foreach (var parameter in Program.Interpreter.CommandContext.ParametersMemory.GetMemoryState())
-                    {
-                        System.Console.WriteLine(parameter);
-                    }
-                    return null;
-                }
+                var command = new Command(rawCommandString);
+                return command;
             }
-
-            const string executePrefix = "EXECUTE ";
-            if (upperCommandString.StartsWith(executePrefix))
-            {
-                var fileInfo = new FileInfo(upperCommandString[executePrefix.Length..]);
-                foreach (var lineWithCommand in File.ReadAllLines(fileInfo.FullName))
-                {
-                    if (lineWithCommand.StartsWith('#'))
-                    {
-                        continue;
-                    }
-
-                    try
-                    {
-                        _commandsBuffer.Enqueue(new(lineWithCommand)); 
-                    }
-                    catch (Exception ex)
-                    {
-                        System.Console.WriteLine($"Error: {ex.Message} ({lineWithCommand})");
-                    }
-                }
-                return null;
-            }
-
-            var command = new Command(rawCommandString);
-            return command;
         }
         catch (Exception ex)
         {
             System.Console.WriteLine($"Error! {ex.Message}");
-            return null;
         }
+
+        return null;
+    }
+
+    public void AddCommandToBuffer(Command command)
+    {
+        _commandsBuffer.Enqueue(command);
     }
 }

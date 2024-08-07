@@ -1,4 +1,6 @@
-﻿namespace OOPTask2.Console;
+﻿using OOPTask2.Console.ConsoleCommands;
+
+namespace OOPTask2.Console;
 
 internal static class Program
 {
@@ -9,7 +11,15 @@ internal static class Program
         System.Console.Title = "Calculator";
 
         var storage = new OperatorStorage(new JsonOperatorLoader(), new OperatorCreator());
-        Interpreter = new CommandInterpreter(storage, new ConsoleReader(), new CommandContext(new StackMemory(), new ParametersMemory(), new ConsoleOutput()));
+        Interpreter = new(storage, new ConsoleReader(), new CommandContext(new StackMemory(), new ParametersMemory(), new ConsoleOutput()));
+
+        ConsoleCommandsManager.Initialize(
+        [
+            new ExitConsoleCommand(),
+            new ClearConsoleCommand(),
+            new ShowMemoryConsoleCommand(),
+            new ExecuteConsoleCommand()
+        ]);
 
         Interpreter.ExecuteAll();
     }
