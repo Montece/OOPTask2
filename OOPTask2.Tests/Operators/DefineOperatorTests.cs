@@ -15,7 +15,7 @@ public sealed class DefineOperatorTests
     {
         var command = new Command(commandString);
         var defineOperator = new DefineOperator();
-        var isMatch = defineOperator.IsMatch(command);
+        var isMatch = defineOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -27,7 +27,7 @@ public sealed class DefineOperatorTests
     {
         var command = new Command(commandString);
         var defineOperator = new DefineOperator();
-        var isMatch = defineOperator.IsMatch(command);
+        var isMatch = defineOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

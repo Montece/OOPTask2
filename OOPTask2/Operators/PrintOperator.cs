@@ -5,19 +5,23 @@ using OOPTask2.Commands;
 namespace OOPTask2.Operators;
 
 [UsedImplicitly]
-public sealed class PrintOperator : IOperator
+public sealed class PrintOperator : Operator
 {
-    public string Prefix => "PRINT";
-
-    public bool IsMatch(Command command)
+    public override string Prefix => "PRINT";
+    public override int MinArgumentsCount => 0;
+    public override int MaxArgumentsCount => 0;
+    
+    protected override void ExecuteInternal(Command command, ICommandContext context)
     {
-        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length == 0;
-    }
-
-    public void Execute(Command command, ICommandContext context)
-    {
-        var element = context.StackMemory.Pop();
-        context.StackMemory.Push(element);
-        context.CommandOutput.Write(element);
+        switch (command.Arguments.Length)
+        {
+            case 0:
+                var element = context.StackMemory.Pop();
+                context.StackMemory.Push(element);
+                context.CommandOutput.Write(element);
+                break;
+            default:
+                throw new InvalidArgumentsCountException();
+        }
     }
 }

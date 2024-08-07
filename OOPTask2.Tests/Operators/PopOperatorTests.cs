@@ -15,7 +15,7 @@ public sealed class PopOperatorTests
     {
         var command = new Command(commandString);
         var popOperator = new PopOperator();
-        var isMatch = popOperator.IsMatch(command);
+        var isMatch = popOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -26,7 +26,7 @@ public sealed class PopOperatorTests
     {
         var command = new Command(commandString);
         var popOperator = new PopOperator();
-        var isMatch = popOperator.IsMatch(command);
+        var isMatch = popOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

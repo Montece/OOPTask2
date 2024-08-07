@@ -13,7 +13,7 @@ public sealed class MultiplyOperatorTests
     {
         var command = new Command("*");
         var multiplyOperator = new MultiplyOperator();
-        var isMatch = multiplyOperator.IsMatch(command);
+        var isMatch = multiplyOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -27,7 +27,7 @@ public sealed class MultiplyOperatorTests
     {
         var command = new Command(commandString);
         var multiplyOperator = new MultiplyOperator();
-        var isMatch = multiplyOperator.IsMatch(command);
+        var isMatch = multiplyOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

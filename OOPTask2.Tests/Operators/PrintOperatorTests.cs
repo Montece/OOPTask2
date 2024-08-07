@@ -11,7 +11,7 @@ public sealed class PrintOperatorTests
     {
         var command = new Command("PRINT");
         var printOperator = new PrintOperator();
-        var isMatch = printOperator.IsMatch(command);
+        var isMatch = printOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -22,7 +22,7 @@ public sealed class PrintOperatorTests
     {
         var command = new Command(commandString);
         var printOperator = new PrintOperator();
-        var isMatch = printOperator.IsMatch(command);
+        var isMatch = printOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

@@ -6,16 +6,13 @@ using OOPTask2.Commands.Arguments;
 namespace OOPTask2.Operators;
 
 [UsedImplicitly]
-public sealed class PushOperator : IOperator
+public sealed class PushOperator : Operator
 {
-    public string Prefix => "PUSH";
+    public override string Prefix => "PUSH";
+    public override int MinArgumentsCount => 1;
+    public override int MaxArgumentsCount => 1;
 
-    public bool IsMatch(Command command)
-    {
-        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length == 1;
-    }
-
-    public void Execute(Command command, ICommandContext context)
+    protected override void ExecuteInternal(Command command, ICommandContext context)
     {
         switch (command.Arguments.Length)
         {
@@ -26,7 +23,7 @@ public sealed class PushOperator : IOperator
             {
                 if (!context.ParametersMemory.IsExists((string)parameterArgument.Value))
                 {
-                    return;
+                    throw new ArgumentNotExistException();
                 }
                 var parameter = context.ParametersMemory.Get((string)parameterArgument.Value);
                 context.StackMemory.Push(parameter.Value);

@@ -6,8 +6,10 @@ namespace OOPTask2.Operators;
 public interface IOperator
 {
     public string Prefix { get; }
+    public int MinArgumentsCount { get; }
+    public int MaxArgumentsCount { get; }
 
-    bool IsMatch(Command command);
+    bool IsValidCommand(Command command);
 
     void Execute(Command command, ICommandContext context);
 }

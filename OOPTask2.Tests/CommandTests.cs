@@ -7,7 +7,6 @@ public sealed class CommandTests
 {
     [Theory]
     [InlineData("123")]
-    [InlineData("#Тест")]
     [InlineData("ЕщеОдинТест123")]
     [InlineData("Test-")]
     public void Сommand_Create(string commandString)

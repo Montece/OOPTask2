@@ -14,7 +14,7 @@ public sealed class DivideOperatorTests
     {
         var command = new Command("/");
         var divideOperator = new DivideOperator();
-        var isMatch = divideOperator.IsMatch(command);
+        var isMatch = divideOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -28,7 +28,7 @@ public sealed class DivideOperatorTests
     {
         var command = new Command(commandString);
         var divideOperator = new DivideOperator();
-        var isMatch = divideOperator.IsMatch(command);
+        var isMatch = divideOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

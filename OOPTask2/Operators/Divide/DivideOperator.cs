@@ -5,26 +5,30 @@ using OOPTask2.Commands;
 namespace OOPTask2.Operators.Divide;
 
 [UsedImplicitly]
-public sealed class DivideOperator : IOperator
+public sealed class DivideOperator : Operator
 {
-    public string Prefix => "/";
+    public override string Prefix => "/";
+    public override int MinArgumentsCount => 0;
+    public override int MaxArgumentsCount => 0;
 
-    public bool IsMatch(Command command)
+    protected override void ExecuteInternal(Command command, ICommandContext context)
     {
-        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length == 0;
-    }
-
-    public void Execute(Command command, ICommandContext context)
-    {
-        var rightOperand = context.StackMemory.Pop();
-        var leftOperand = context.StackMemory.Pop();
-
-        if (rightOperand.Equals(0))
+        switch (command.Arguments.Length)
         {
-            throw new ZeroDivideException();
-        }
+            case 0:
+                var rightOperand = context.StackMemory.Pop();
+                var leftOperand = context.StackMemory.Pop();
 
-        var result = leftOperand / rightOperand;
-        context.StackMemory.Push(result);
+                if (rightOperand.Equals(0))
+                {
+                    throw new ZeroDivideException();
+                }
+
+                var result = leftOperand / rightOperand;
+                context.StackMemory.Push(result);
+                break;
+            default:
+                throw new InvalidArgumentsCountException();
+        }
     }
 }

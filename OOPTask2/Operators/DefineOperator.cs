@@ -5,17 +5,23 @@ using OOPTask2.Commands;
 namespace OOPTask2.Operators;
 
 [UsedImplicitly]
-public sealed class DefineOperator : IOperator
+public sealed class DefineOperator : Operator
 {
-    public string Prefix => "DEFINE";
+    public override string Prefix => "DEFINE";
+    public override int MinArgumentsCount => 2;
+    public override int MaxArgumentsCount => 2;
 
-    public bool IsMatch(Command command)
+    protected override void ExecuteInternal(Command command, ICommandContext context)
     {
-        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length == 2;
-    }
-
-    public void Execute(Command command, ICommandContext context)
-    {
-        context.ParametersMemory.Set(new((string)command.Arguments[0].Value, (double)command.Arguments[1].Value));
+        switch (command.Arguments.Length)
+        {
+            case 2:
+                var name = (string)command.Arguments[0].Value;
+                var value = (double)command.Arguments[1].Value;
+                context.ParametersMemory.Set(new(name, value));
+                break;
+            default:
+                throw new InvalidArgumentsCountException();
+        }
     }
 }

@@ -15,7 +15,7 @@ public sealed class PushOperatorTests
     {
         var command = new Command(commandString);
         var pushOperator = new PushOperator();
-        var isMatch = pushOperator.IsMatch(command);
+        var isMatch = pushOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -26,7 +26,7 @@ public sealed class PushOperatorTests
     {
         var command = new Command(commandString);
         var pushOperator = new PushOperator();
-        var isMatch = pushOperator.IsMatch(command);
+        var isMatch = pushOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

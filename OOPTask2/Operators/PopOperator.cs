@@ -6,16 +6,13 @@ using OOPTask2.Commands.Arguments;
 namespace OOPTask2.Operators;
 
 [UsedImplicitly]
-public sealed class PopOperator : IOperator
+public sealed class PopOperator : Operator
 {
-    public string Prefix => "POP";
+    public override string Prefix => "POP";
+    public override int MinArgumentsCount => 0;
+    public override int MaxArgumentsCount => 1;
 
-    public bool IsMatch(Command command)
-    {
-        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length is 0 or 1;
-    }
-
-    public void Execute(Command command, ICommandContext context)
+    protected override void ExecuteInternal(Command command, ICommandContext context)
     {
         switch (command.Arguments.Length)
         {
@@ -26,8 +23,9 @@ public sealed class PopOperator : IOperator
             {
                 if (command.Arguments[0] is ParameterArgument parameterArgument)
                 {
-                    var popValue = context.StackMemory.Pop();
-                    context.ParametersMemory.Set(new((string)parameterArgument.Value, popValue));
+                    var name = (string)parameterArgument.Value;
+                    var value = context.StackMemory.Pop();
+                    context.ParametersMemory.Set(new(name, value));
                 }
                 break;
             }

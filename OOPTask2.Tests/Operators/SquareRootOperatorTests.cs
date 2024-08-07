@@ -14,7 +14,7 @@ public sealed class SquareRootOperatorTests
     {
         var command = new Command(commandString);
         var squareRootOperator = new SquareRootOperator();
-        var isMatch = squareRootOperator.IsMatch(command);
+        var isMatch = squareRootOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -26,7 +26,7 @@ public sealed class SquareRootOperatorTests
     {
         var command = new Command(commandString);
         var squareRootOperator = new SquareRootOperator();
-        var isMatch = squareRootOperator.IsMatch(command);
+        var isMatch = squareRootOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

@@ -13,7 +13,7 @@ public sealed class SubtractOperatorTests
     {
         var command = new Command("-");
         var subtractOperator = new SubtractOperator();
-        var isMatch = subtractOperator.IsMatch(command);
+        var isMatch = subtractOperator.IsValidCommand(command);
 
         Assert.True(isMatch, "Wrong command for operator!");
     }
@@ -27,7 +27,7 @@ public sealed class SubtractOperatorTests
     {
         var command = new Command(commandString);
         var subtractOperator = new SubtractOperator();
-        var isMatch = subtractOperator.IsMatch(command);
+        var isMatch = subtractOperator.IsValidCommand(command);
 
         Assert.False(isMatch, "Not wrong command for operator!");
     }

@@ -28,9 +28,9 @@ public sealed class OperatorStorage : IOperatorStorage
     [Pure]
     public IOperator? FindOperator(Command command)
     {
-        var matchOperator = _operators.FirstOrDefault(o => o.IsMatch(command));
+        var validOperator = _operators.FirstOrDefault(o => o.IsValidCommand(command));
 
-        return matchOperator;
+        return validOperator;
     }
 }
 

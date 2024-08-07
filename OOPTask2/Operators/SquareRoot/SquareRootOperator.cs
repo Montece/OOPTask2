@@ -5,25 +5,29 @@ using OOPTask2.Commands;
 namespace OOPTask2.Operators.SquareRoot;
 
 [UsedImplicitly]
-public sealed class SquareRootOperator : IOperator
+public sealed class SquareRootOperator : Operator
 {
-    public string Prefix => "SQRT";
+    public override string Prefix => "SQRT";
+    public override int MinArgumentsCount => 0;
+    public override int MaxArgumentsCount => 0;
 
-    public bool IsMatch(Command command)
+    protected override void ExecuteInternal(Command command, ICommandContext context)
     {
-        return command.Prefix.Value.Equals(Prefix) && command.Arguments.Length == 0;
-    }
-
-    public void Execute(Command command, ICommandContext context)
-    {
-        var operand = context.StackMemory.Pop();
-        var sqrt = Math.Sqrt(operand);
-
-        if (sqrt.Equals(double.NaN))
+        switch (command.Arguments.Length)
         {
-            throw new SquareRootException($"Cannot take the square root of '{operand}'!");
-        }
+            case 0:
+                var operand = context.StackMemory.Pop();
+                var sqrt = Math.Sqrt(operand);
 
-        context.StackMemory.Push(sqrt);
+                if (sqrt.Equals(double.NaN))
+                {
+                    throw new SquareRootException($"Cannot take the square root of '{operand}'!");
+                }
+
+                context.StackMemory.Push(sqrt);
+                break;
+            default:
+                throw new InvalidArgumentsCountException();
+        }
     }
 }
