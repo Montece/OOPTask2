@@ -1,6 +1,4 @@
-﻿using OOPTask2.Commands;
-
-namespace OOPTask2.Console.ConsoleCommands;
+﻿namespace OOPTask2.Console.ConsoleCommands;
 
 public class ExecuteConsoleCommand : ConsoleCommand
 {

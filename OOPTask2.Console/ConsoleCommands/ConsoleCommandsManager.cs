@@ -1,12 +1,10 @@
-﻿using OOPTask2.Commands;
-
-namespace OOPTask2.Console.ConsoleCommands;
+﻿namespace OOPTask2.Console.ConsoleCommands;
 
 public static class ConsoleCommandsManager
 {
-    public static bool IsInitialized { get; private set; } = false;
+    public static bool IsInitialized { get; private set; }
 
-    private static ConsoleCommand[] _commands;
+    private static ConsoleCommand[]? _commands;
 
     public static void Initialize(ConsoleCommand[] commands)
     {
@@ -24,7 +22,7 @@ public static class ConsoleCommandsManager
 
     public static bool TryExecuteCommand(string upperCommandString, ConsoleReader consoleReader)
     {
-        if (!IsInitialized)
+        if (!IsInitialized || _commands is null)
         {
             return false;
         }
