@@ -10,9 +10,9 @@ public class CommandReaderTests
     [InlineData("123\n456\n#74544faf\nghflhki\n\n", 3)]
     public void CommandReader_Read(string text, int validCommandsCount)
     {
-        var stream = new MemoryStream(Encoding.UTF8.GetBytes(text));
-        var reader = new StreamReader(stream);
-        var commandReader = new CommandReader(reader);
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(text));
+        using var reader = new StreamReader(stream);
+        var commandReader = new CommandReaderWrapper(reader);
 
         var commands = new List<Command>();
 

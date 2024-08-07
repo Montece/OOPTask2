@@ -21,9 +21,10 @@ public sealed class CommandInterpreterTests
         var commandOutput = new CommandOutput(writer);
         var context = new CommandContext(memory, parametersMemory, commandOutput);
         var script = File.ReadAllText(scriptName);
-        var stream = new MemoryStream(Encoding.UTF8.GetBytes(script));
-        var reader = new StreamReader(stream);
-        var commandReader = new CommandReader(reader);
+
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(script));
+        using var reader = new StreamReader(stream);
+        var commandReader = new CommandReaderWrapper(reader);
 
         var interpreter = new CommandInterpreter(operatorStorage, commandReader, context);
 
@@ -48,9 +49,9 @@ public sealed class CommandInterpreterTests
         var commandOutput = new CommandOutput(writer);
         var context = new CommandContext(memory, parametersMemory, commandOutput);
         var script = File.ReadAllText(scriptName);
-        var stream = new MemoryStream(Encoding.UTF8.GetBytes(script));
-        var reader = new StreamReader(stream);
-        var commandReader = new CommandReader(reader);
+        using var stream = new MemoryStream(Encoding.UTF8.GetBytes(script));
+        using var reader = new StreamReader(stream);
+        var commandReader = new CommandReaderWrapper(reader);
 
         var interpreter = new CommandInterpreter(operatorStorage, commandReader, context);
 
